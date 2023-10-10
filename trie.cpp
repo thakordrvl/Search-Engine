@@ -19,8 +19,6 @@ public:
     }
 
     void insert(string str);
-    void remove(string str);
-    bool _remove(TrieNode *current, string str, int index);
     bool search_exact(string str);
     vector<string> search_pre(string str);
 
@@ -38,7 +36,6 @@ void Trie::insert(string str)
             current = current->children[ch];
         
         else{
-
             current->children.insert({ch, new TrieNode()});
             current = current->children[ch];
         }
@@ -103,40 +100,6 @@ vector<string> Trie::search_pre(string str){
     return results;
 }
 
-// Delete a string
-void Trie::remove(string str)
-{
-    _remove(root, str, 0);
-}
 
-bool Trie::_remove(TrieNode *current, string str, int index){
-    
-    if (index == str.length()){
-        // End of the word ?
-        if (!current->isEndOfWord){
-            return false; // word don't exist.
-        }
-        current->isEndOfWord = false;
 
-        // if no more children
-        return current->children.size() == 0; // true?
-    }
-
-    char ch = str[index];
-
-    if (!current->children[ch]){
-        return false; // word don't exist.
-    }
-
-    bool shouldDeleteCurrentNode = _remove(current->children[ch], str, index + 1);
-
-    // after recursion
-    if (shouldDeleteCurrentNode)
-    {
-        current->children.erase(ch);
-        return current->children.size() == 0; // true ?
-    }
-
-    return false;
-}
  

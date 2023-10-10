@@ -39,6 +39,7 @@ void computeLPSArray(string pat, int M, int lps[]){
             lps[i] = len;
             i++;
         }
+
         else // (pat[i] != pat[len])
         {
             // This is tricky. Consider the example.

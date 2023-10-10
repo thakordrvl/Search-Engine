@@ -68,10 +68,11 @@ int main(){
                 break;
 
             case 3:
-                for (string w : search(data, pattern))
-                {
+            
+                for (string w : search(data, pattern)){
                     cout << w << endl;
                 }
+
                 break;
 
             default:
